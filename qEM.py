@@ -258,7 +258,7 @@ def main():
     ax = math.sin(rot/2.);
     # quaternion format is [scalar, x, y ,z]
     #  a = [0, 1, 2, 3]  # Electric potential.
-    A = [(w)*.5, (ax)*1, (ax)*2, (ax)*3]  # Electric potential.
+    A = [(w)*.5, (ax)*1, (ax)**2, (ax)**3]  # Electric potential.
     d_dr = [-5*ax,w,w*2,w*3]  # d/dr.
     interactive(True)
 
@@ -295,7 +295,7 @@ def main():
 
     interactive(False)
 
-    displayResults(BB,EE,ret,"[d/dr,B]==+{d/dr,E}")
+    displayResults(BB,EE,ret,"[d/dr,B]-+{d/dr,E}")
 
 
 
