@@ -66,7 +66,7 @@ def b_Left_a_Eqn04(b,a):
             a[0]*b[2]+a[1]*b[3]+a[2]*b[0]-a[3]*b[1],
             a[0]*b[3]-a[1]*b[2]+a[2]*b[1]+a[3]*b[0]]
 
-# 1/2[a->b + b<-a] {}
+# {a, b} = (1/2)(a → b + b ← a) (5)
 
 def symmetric_Eqn05(a,b):
     A = a
@@ -78,7 +78,7 @@ def symmetric_Eqn05(a,b):
             .5*(R[2]+L[2]),
             .5*(R[3]+L[3])]
 
-# 1/2[a->b - b<-a] []
+# [a, b] = (1/2)(a → b − b ← a) (6)
 def antisymmetric_Eqn06(a,b):
     A = a
     dr = b
@@ -95,6 +95,8 @@ def antisymmetric_Eqn06(a,b):
 # electric field is the negative symmetric
 # derivative of the potential
 # eqn 09
+
+# E = −{d/dr, A} = −(1/2)(d/dr → A + A ← d/dr) (9)
 def fE_Eqn09(a,b):
     # r = normalize(rq)
      A=a
@@ -107,6 +109,8 @@ def fE_Eqn09(a,b):
              -1*.5*(R[3]+L[3])]
 # magnetic field is the positive antisymmetric_Eqn06
 # derivative of the potential
+
+# B = +[d/dr, A] = +(1/2)(d/dr → A − A ← d/dr) (10)
 def fB_Eqn10(a,b):
     #r = normalize(rq)
      A=a
@@ -158,6 +162,7 @@ def build_prism_with_E_eqn09(a,b):
     #return E(E(r,a),r_conj)
     return fE_Eqn09(a,b)
 
+#  [d/dr, B] = +{d/dr, E} (13)
 def Equation13(a,b):
     d_dr = b
     A = a
@@ -176,6 +181,7 @@ def Equation13(a,b):
     return BB,EE,ret
     #return a_Right_b_Eqn03(a,b)
 
+# [d/dr, E] = −{d/dr, B} (14)
 def Equation14(a,b):
     d_dr = b
     A = a
@@ -194,6 +200,7 @@ def Equation14(a,b):
     return BB,EE,ret
     #return a_Right_b_Eqn03(a,b)
 
+# d/dr → (d/dr → A) + (A ← d/dr) ← d/dr = 0 (22)
 def Equation22(a,b):
     A = a
     dr = b
@@ -202,13 +209,14 @@ def Equation22(a,b):
     print("eq22 e23",e23)
     print("eq22 e24",e24)
     e25=[0,0,0,0]
-    e25[0]=e23[0]-e24[0]
-    e25[1]=e23[1]-e24[1]
-    e25[2]=e23[2]-e24[2]
-    e25[3]=e23[3]-e24[3]
+    e25[0]=e23[0]+e24[0]
+    e25[1]=e23[1]+e24[1]
+    e25[2]=e23[2]+e24[2]
+    e25[3]=e23[3]+e24[3]
 
     return e25;
 
+# d/dr → (A ← d/dr) − (d/dr → A) ← d/dr = 0 (23)
 def Equation23(a,b):
    # A = normalize(a)
    # dr = normalize(b)
@@ -226,6 +234,7 @@ def Equation23(a,b):
 
     return e25;
 
+#  d/dr → (d/dr → A) + (A ← d/dr) ← d/dr = 8πJ (24)
 def Equation24(a,b):
     A = a
     dr = b
@@ -240,6 +249,7 @@ def Equation24(a,b):
     e25[3]=e23[3]+e24[3]
 
     return e25;
+
 def main():
     degrees = math.pi/180;
     rot = 180*degrees;
