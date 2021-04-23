@@ -255,11 +255,13 @@ def main():
     rot = 180*degrees;
     # for rotating about an axis.
     w = math.cos(rot/2.);
+    dw = math.cos(rot);
     ax = math.sin(rot/2.);
+    dax = math.sin(rot);
     # quaternion format is [scalar, x, y ,z]
     #  a = [0, 1, 2, 3]  # Electric potential.
-    A = [(w)*.5, (ax)*1, (ax)**2, (ax)**3]  # Electric potential.
-    d_dr = [-5*ax,w,w*2,w*3]  # d/dr.
+    A = [(w)*.5, (ax)**2, (ax)**2, (ax)**2]  # Electric potential.
+    d_dr = [-5*ax,dw,dw,dw]  # d/dr.
     interactive(True)
 
     #r = normalize(rq)
