@@ -5,6 +5,9 @@
 # In this study results of each equation is graphed as a
 # 3D prism.
 
+# This suite of equations yield better results when
+# all values of quaternions are quasi random to each other....
+
 import math
 import os
 import numpy as np
